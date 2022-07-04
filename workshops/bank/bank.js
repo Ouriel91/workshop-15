@@ -6,11 +6,11 @@
 //      2.The Client’s current account balance
 
 // For example:
-// [
-//     { firstName: "Ziv", lastName: "Ventura", balance: "220" },
-//     { firstName: "Vlad", lastName: "Mystetskyi", balance: "54" },
-//     { firstName: "Yoni", lastName: "Levin", balance: "213" }
-// ]
+ //[
+  //  { firstName: "Ziv", lastName: "Ventura", balance: "220" },
+  //  { firstName: "Vlad", lastName: "Mystetskyi", balance: "54" },
+    // { firstName: "Yoni", lastName: "Levin", balance: "213" }
+ //]
 
 // The output should be the average balance
 // In the example above, the balance will be 162.33, because:
@@ -21,12 +21,22 @@
 // 2.If an exception occurs, simply return null
 // 3.To test the function's result, see file index.js
 const calculateBalance = (data) => {
-    // TODO: implement me!
-    // TODO: implement me!
-    // TODO: implement me!
-    // TODO: implement me!
+    
+    if(!data) return null;
+    if(!Array.isArray(data)) return null;
+    if(data.length === 0) return "0.00"
 
-    return "0.00";
+    let sum = 0
+    
+    for(const item of data) {
+        const {balance} = item || {}
+        if(!balance) return null
+        const parsedValue = parseFloat(balance)
+        sum += parsedValue
+    }
+    
+    return String((sum / data.length).toFixed(2))
+    
     // TODO: return null if an error occurs
 }
 

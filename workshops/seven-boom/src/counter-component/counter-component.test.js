@@ -1,15 +1,15 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from '../app';
 
-const clickIncrement = async (times) => {
-  const plusButton = await screen.getByText("+");
+const clickIncrement =  (times) => {
+  const plusButton =  screen.getByText("+");
   for (let i=0; i<times; i++) {
     fireEvent.click(plusButton);
   }
 }
 
-const clickDecrement = async (times) => {
-  const plusButton = await screen.getByText("-");
+const clickDecrement =  (times) => {
+  const plusButton =  screen.getByText("-");
   for (let i=0; i<times; i++) {
     fireEvent.click(plusButton);
   }
@@ -17,15 +17,15 @@ const clickDecrement = async (times) => {
 
 test('Click seven times +', async () => {
   render(<App />);
-  await clickIncrement(7)
+   clickIncrement(7)
   await waitFor(() => {
-    expect(screen.getByText("7")).toBeInTheDocument()
+    expect(screen.getByText("BOOM")).toBeInTheDocument()
   })
 });
 
 test('Click seven times -', async () => {
   render(<App />);
-  await clickDecrement(7)
+   clickDecrement(7)
   await waitFor(() => {
     expect(screen.getByText("-7")).toBeInTheDocument()
   })
@@ -33,17 +33,17 @@ test('Click seven times -', async () => {
 
 test('Increment and then decrement', async () => {
   render(<App />);
-  await clickIncrement(20)
-  await clickDecrement(3)
+   clickIncrement(20)
+   clickDecrement(3)
   await waitFor(() => {
-    expect(screen.getByText("17")).toBeInTheDocument()
+    expect(screen.getByText("BOOM")).toBeInTheDocument()
   })
 });
 
 test('Decrement and then increment', async () => {
   render(<App />);
-  await clickDecrement(7)
-  await clickIncrement(10)
+   clickDecrement(7)
+   clickIncrement(10)
   await waitFor(() => {
     expect(screen.getByText("3")).toBeInTheDocument()
   })
@@ -51,8 +51,8 @@ test('Decrement and then increment', async () => {
 
 test('Click seven times +, then seven times - (to zero)', async () => {
   render(<App />);
-  await clickIncrement(7);
-  await clickDecrement(7);
+   clickIncrement(7);
+   clickDecrement(7);
   await waitFor(() => {
     expect(screen.getByText("0")).toBeInTheDocument()
   })
